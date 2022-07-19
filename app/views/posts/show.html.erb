@@ -1,0 +1,15 @@
+<div class="container">
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <%= link_to "Edit this post", edit_post_path(@post), class:"btn btn-secondary" %> 
+  <%= link_to "Back to posts", posts_path, class:"btn btn-secondary" %>
+</div>
+<br>
+<div>
+ <%= button_to 'Destroy', @post, method: :delete,
+  form: {data: {turbo_confirm: 'Are you sure?'}},class:"btn btn-danger" %>
+</div>
+</div>
