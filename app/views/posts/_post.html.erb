@@ -8,14 +8,9 @@
   <p>
     <strong>Body:</strong>
     <%= post.body %>
-  
-  <br>
+  </p>
    <% post.images.each do |image|%>
-    <%= image_tag url_for(image),size:"200x200"%>
+    <%= link_to image_tag(post.picture_as_thumbnail(image)),image %>
   <% end %>
-
-</p>
-
-
 </div>
 </div>
