@@ -10,7 +10,28 @@
     <%= post.body %>
   </p>
    <% post.images.each do |image|%>
-    <%= link_to image_tag(post.picture_as_thumbnail(image)),image %>
+   <div id="image_<%= image.id %>"><br>
+    <%= image_tag(post.picture_as_thumbnail(image)) %>
+    <div id="co-ordinates_<%= image.id %>">
+    </div>
+    </div>
   <% end %>
 </div>
 </div>
+<script type="text/javascript">
+  const data = JSON.parse("<%= post.images.pluck(:id) %>");
+  console.log(data);
+      for (let i = 0; i < data.length; i++) {
+        var image_id = `#image_${data[i]}`;
+        var co_id = `#co-ordinates_${data[i]}`;
+        $(image_id).click(function(e) {
+            e.preventDefault();
+            var offset = $(this).offset();
+            var x = e.clientX - offset.left;
+            var y = e.clientY - offset.top;
+  
+            $(co_id).html(`X::::${x}<br>
+             Y::::${y}`)
+        })
+      }
+    </script>
